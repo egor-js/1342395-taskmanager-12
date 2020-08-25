@@ -27,25 +27,6 @@ const generateDate = () => {
 const descriptions = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
 const colors = [`black`, `yellow`, `blue`, `green`, `pink`];
 
-// const dueDates = [`20.08.2020`, `21.08.2020`, `22.08.2020`, `23.08.2020`, `24.08.2020`, `25.08.2020`];
-// const repeatingDaysMock = {
-//   'mo': false,
-//   'tu': false,
-//   'we': false,
-//   'th': false,
-//   'fr': false,
-//   'sa': false,
-//   'su': false,
-// };
-
-// const createRepDays = () => {
-//   const keys = Object.keys(repeatingDaysMock);
-//   for (const propertyName of keys) {
-//     repeatingDaysMock[propertyName] = Math.random > 0.5 ? true : false;
-//   }
-//   return repeatingDaysMock;
-// };
-
 const createRepDays = () => {
   return {
     'mo': false,
@@ -57,13 +38,6 @@ const createRepDays = () => {
     'su': false,
   };
 };
-
-// 'we': Math.round(Math.random()),
-// Math.random() > 0.5 ? true : false,
-
-const now = new Date();
-const sevenDays = new Date(604800000);
-const day = new Date(now - sevenDays);
 
 export const createMockObject = function () {
   const dueDate = generateDate();

@@ -25,9 +25,8 @@ const boardElement = siteMainElement.querySelector(`.board`);
 const taskListElement = boardElement.querySelector(`.board__tasks`);
 
 render(taskListElement, createTaskEditTemplate(tasks[0]), `beforeend`);
-console.log(tasks[0].repeatingDays);
+
 for (let i = 1; i < TASK_QUANTITY; i++) {
-  console.log(tasks[i].repeatingDays);
   render(taskListElement, createTaskTemplate(tasks[i]), `beforeend`);
 }
 
