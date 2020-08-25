@@ -4,8 +4,11 @@ import {createBoardTemplate} from "./view/board";
 import {createTaskTemplate} from "./view/task";
 import {createTaskEditTemplate} from "./view/edit-task";
 import {createLoadMoreButtonTemplate} from "./view/button-more";
+import {createMockObject} from "./mock/mock";
 
-const TASK_QUANTITY = 3;
+const TASK_QUANTITY = 4;
+
+const tasks = new Array(TASK_QUANTITY).fill().map(createMockObject);
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -21,11 +24,11 @@ render(siteMainElement, createBoardTemplate(), `beforeend`);
 const boardElement = siteMainElement.querySelector(`.board`);
 const taskListElement = boardElement.querySelector(`.board__tasks`);
 
-render(taskListElement, createTaskEditTemplate(), `beforeend`);
-
-
-for (let i = 0; i < TASK_QUANTITY; i++) {
-  render(taskListElement, createTaskTemplate(), `beforeend`);
+render(taskListElement, createTaskEditTemplate(tasks[0]), `beforeend`);
+console.log(tasks[0].repeatingDays);
+for (let i = 1; i < TASK_QUANTITY; i++) {
+  console.log(tasks[i].repeatingDays);
+  render(taskListElement, createTaskTemplate(tasks[i]), `beforeend`);
 }
 
 render(boardElement, createLoadMoreButtonTemplate(), `beforeend`);
