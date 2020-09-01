@@ -46,8 +46,8 @@ export const createMockObject = function () {
     repeatingDays: createRepDays(),
     dueDate,
     color: colors[Math.floor(Math.random() * colors.length)],
-    isFavorite: (Math.random > 0.5) ? true : false,
-    isArchive: Math.random > 0.5 ? true : false,
+    isFavorite: (Math.random() > 0.5) ? true : false,
+    isArchive: Math.random() > 0.5 ? true : false,
   };
 };
 
