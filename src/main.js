@@ -1,21 +1,18 @@
-import {createSiteMenuTemplate} from "./view/menu";
+import SiteMenuView from "./view/menu.js";
 import {createFilterTemplate} from "./view/filters";
 import {createBoardTemplate} from "./view/board";
 import {createTaskTemplate} from "./view/task";
 import {createTaskEditTemplate} from "./view/edit-task";
 import {createLoadMoreButtonTemplate} from "./view/button-more";
 import {generateTask} from "./mock/task.js";
-import {renderTemplate} from "./utils.js";
+import {renderTemplate, rendereElement, RenderPosition} from "./utils.js";
 
-const TASK_QUANTITY = 3;
-
-const tasks = new Array(TASK_QUANTITY).fill().map(generateTask);
-console.log(tasks);
+const TASK_QUANTITY = 9;
 
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-renderTemplate(siteHeaderElement, createSiteMenuTemplate(), `beforeend`);
+rendereElement(siteHeaderElement, new SiteMenuView().getElement(), RenderPosition.BEFOREEND);
 renderTemplate(siteMainElement, createFilterTemplate(), `beforeend`);
 renderTemplate(siteMainElement, createBoardTemplate(), `beforeend`);
 
