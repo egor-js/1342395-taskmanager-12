@@ -6,10 +6,9 @@ import TasksListView from "./view/tasks-list.js";
 import TaskView from "./view/task.js";
 import TaskEditView from "./view/task-edit.js";
 import FilterView from "./view/filter.js";
-import {createBoardTemplate} from "./view/board";
 import {generateTask} from "./mock/task.js";
 import {generateFilter} from "./mock/filter.js";
-import {randomFromRange, render, RenderPosition} from "./utils.js";
+import {render, RenderPosition} from "./utils.js";
 
 const TASK_QUANTITY = 12;
 const TASK_COUNT_PER_STEP = 8;
@@ -32,13 +31,23 @@ const renderTask = (taskListElement, task) => {
     taskListElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
   };
 
+  const onEscKeyDown = (evt) => {
+    if (evt.key === `Escape` || evt.key === `Esc`) {
+      evt.preventDefault();
+      replaceFormToCard();
+      document.removeEventListener(`keydown`, onEscKeyDown);
+    }
+  };
+
   taskComponent.getElement().querySelector(`.card__btn--edit`).addEventListener(`click`, () => {
     replaceCardToForm();
+    document.addEventListener(`keydown`, onEscKeyDown);
   });
 
   taskEditComponent.getElement().querySelector(`form`).addEventListener(`submit`, (evt) => {
     evt.preventDefault();
     replaceFormToCard();
+    document.removeEventListener(`keydown`, onEscKeyDown);
   });
 
   render(taskListElement, taskComponent.getElement(), RenderPosition.BEFOREEND);
@@ -53,8 +62,6 @@ render(siteMainElement, boardComponent.getElement(), RenderPosition.BEFOREEND);
 render(boardComponent.getElement(), new SortView().getElement(), RenderPosition.AFTERBEGIN);
 
 const tasksListComponent = new TasksListView();
-//const taskEditelement = new TaskEditView(tasks[0]).getElement();
-//render(tasksListComponent.getElement(), taskEditelement, RenderPosition.BEFOREEND);
 
 render(boardComponent.getElement(), tasksListComponent.getElement(), RenderPosition.BEFOREEND);
 
@@ -81,4 +88,4 @@ if (tasks.length > TASK_COUNT_PER_STEP) {
       loadMoreButtonComponent.removeElement();
     }
   });
-} 
+}
