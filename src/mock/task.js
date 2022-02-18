@@ -50,13 +50,25 @@ const getRandomColor = () => {
 
 
 export const generateTask = () => {
+  const dueDate = generateDate();
+  const repeating = dueDate === null
+    ? generateRepeating()
+    : {
+      mo: false,
+      tu: false,
+      we: false,
+      th: false,
+      fr: false,
+      sa: false,
+      su: false
+    };
+
   return {
     description: generateDescription(),
-    dueDate: generateDate(),
-    repeating: generateRepeating(),
+    dueDate,
+    repeating,
     color: getRandomColor(),
     isArchive: Boolean(randomFromRange(0, 1)),
-    isFavorite: Boolean(randomFromRange(0, 1)),
+    isFavorite: Boolean(randomFromRange(0, 1))
   };
-
 };
