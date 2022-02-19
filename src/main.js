@@ -6,7 +6,7 @@ import TasksListView from "./view/tasks-list.js";
 import TaskView from "./view/task.js";
 import TaskEditView from "./view/task-edit.js";
 import FilterView from "./view/filter.js";
-import NoTasksView from "./view/no-tasks.js"
+import NoTasksView from "./view/no-tasks.js";
 import {generateTask} from "./mock/task.js";
 import {generateFilter} from "./mock/filter.js";
 import {render, RenderPosition} from "./utils.js";
