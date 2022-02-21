@@ -9,7 +9,7 @@ import FilterView from "./view/filter.js";
 import NoTasksView from "./view/no-tasks.js";
 import {generateTask} from "./mock/task.js";
 import {generateFilter} from "./mock/filter.js";
-import {render, RenderPosition} from "./utils.js";
+import {render, RenderPosition} from "./utils/render.js";
 
 const TASK_QUANTITY = 12;
 const TASK_COUNT_PER_STEP = 8;
@@ -45,8 +45,7 @@ const renderTask = (taskListElement, task) => {
     document.addEventListener(`keydown`, onEscKeyDown);
   });
 
-  taskEditComponent.getElement().querySelector(`form`).addEventListener(`submit`, (evt) => {
-    evt.preventDefault();
+  taskEditComponent.getElement().querySelector(`form`).addEventListener(`submit`, () => {
     replaceFormToCard();
     document.removeEventListener(`keydown`, onEscKeyDown);
   });

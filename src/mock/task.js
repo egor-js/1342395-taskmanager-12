@@ -1,4 +1,4 @@
-import {randomFromRange} from "../utils.js";
+import {randomFromRange} from "../utils/common.js";
 
 const generateDescription = () => {
   const descriptions = [
